@@ -185,7 +185,7 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 
 ## Contact
 
-Your Name - menukathandar@gmail.com
+Email: menukathandar@gmail.com
 
 Project Link: https://github.com/menukathandar/eliteEvents.git
 

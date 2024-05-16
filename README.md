@@ -145,7 +145,8 @@ _For more examples, please refer to the [Documentation](https://example.com)_
 
 ## Panels
 
--[ ]Admin-Admin panel -[ ]User-user panel
+- [ ] Admin-admin panel
+- [ ] User-user panel
 
 ## Features
 

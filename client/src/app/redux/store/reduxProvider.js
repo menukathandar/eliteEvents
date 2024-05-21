@@ -1,10 +1,11 @@
 import React from 'react'
 import { Provider } from 'react-redux'
+import store from './configureStore'
 
-const reduxProvider = () => {
+const ReduxProvider = () => {
   return (
-    <Provider>reduxProvider</Provider>
+    <Provider store = {store}>{children}</Provider>
   )
 }
 
-export default reduxProvider
+export default ReduxProvider

@@ -1,7 +1,8 @@
 import { Inter } from "next/font/google";
 import "./globals.css";
 import {NextUIProvider} from "@nextui-org/react";
-import reduxProvider from "./redux/store/reduxProvider";
+import ReduxProvider from "./redux/store/reduxProvider";
+
 
 
 const inter = Inter({ subsets: ["latin"] });
@@ -16,9 +17,9 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className={inter.className}>
       <NextUIProvider>
-        <reduxProvider>
+        <ReduxProvider>
         {children}
-        </reduxProvider>
+        </ReduxProvider>
         </NextUIProvider>
         </body>
     </html>

@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux'
 const Box = () => {
     const {backgroundColor,height,width} = useSelector(state=>state.box)
   return (
-    <div>
+    <div style = {{backgroundColor: backgroundColor, height: height, width:width }}>
         {backgroundColor}
         {height}
         {width}

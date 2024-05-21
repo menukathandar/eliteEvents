@@ -26,5 +26,5 @@ const boxSlice = createSlice({
   },
 })
 
-export const { increment, decrement, reset } = boxSlice.actions
+export const { changeHeight} = boxSlice.actions
 export default boxSlice.reducer

@@ -23,15 +23,16 @@ export default function NavBar() {
         ],
       }}
     >
-
-      <NavbarBrand>
-      <img src="/logo.png" alt="Logo" />
-      
-        {/* <p className="font-bold text-inherit">ACME</p> */}
+    <NavbarBrand>
+      <img src="/logo.png" alt="Logo" style={{ width: '50px', height: '50px' }} />
+       {/* <p className="font-bold text-inherit">ACME</p> */}
       </NavbarBrand>
-      <NavbarContent className="hidden sm:flex gap-4" justify="center">
+      {/* <NavbarContent className="hidden sm:flex gap-4" justify="center">
         <NavbarItem>
           <Link color="foreground" href="#">
+            Features
+          </Link>
+          <Link href="#" aria-current="page">
             Features
           </Link>
         </NavbarItem>
@@ -45,15 +46,17 @@ export default function NavBar() {
             Integrations
           </Link>
         </NavbarItem>
-      </NavbarContent>
+      </NavbarContent> */}
       <NavbarContent justify="end">
         <NavbarItem className="hidden lg:flex">
-          <Link href="#">Login</Link>
+          <Link href="/login">Login</Link>
         </NavbarItem>
         <NavbarItem>
-          <Button as={Link} color="primary" href="#" variant="flat">
-            Sign Up
-          </Button>
+        <Link href="/register">
+            <Button radius="full" className="bg-gradient-to-tr from-green-500 to-blue-500 text-white shadow-lg">
+                Sign Up 
+            </Button>
+        </Link>
         </NavbarItem>
       </NavbarContent>
     </Navbar>

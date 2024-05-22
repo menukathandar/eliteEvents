@@ -1,11 +1,14 @@
 'use client'
+import NavBar from '@/components/navbar/page'
 import React from 'react'
+
 
 
 const dashboard = () => {
   return (
     <div>
-        <img src="/logo.png" alt="Logo" />
+      <NavBar/>
+        {/* <img src="/logo.png" alt="Logo" /> */}
     </div>
   )
 }

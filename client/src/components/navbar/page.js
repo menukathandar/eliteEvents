@@ -24,8 +24,8 @@ export default function NavBar() {
       }}
     >
     <NavbarBrand>
-      <img src="/logo.png" alt="Logo" style={{ width: '50px', height: '50px' }} />
-       {/* <p className="font-bold text-inherit">ACME</p> */}
+      {/* <img src="/logo.png" alt="Logo" style={{ width: '50px', height: '50px' }} /> */}
+       <p className="font-bold text-inherit">ELITE<br/>EVENTS</p>
       </NavbarBrand>
       {/* <NavbarContent className="hidden sm:flex gap-4" justify="center">
         <NavbarItem>

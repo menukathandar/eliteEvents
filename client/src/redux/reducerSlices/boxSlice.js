@@ -3,9 +3,7 @@ import { createSlice } from '@reduxjs/toolkit'
 const initialState = { 
   backgroundColor: 'red',
   height : 50,
-  width: 50,
-  // borderRadius: '0%'
-  
+  width: 50 
 }
 const boxSlice = createSlice({
   name: 'counter',
@@ -14,15 +12,6 @@ const boxSlice = createSlice({
     changeHeight(state){
       state.height = state.height+5
     },
-    changeWidth(state){
-
-    },
-    changeShape(state){
-      // state.borderRadius = '50%'
-    }
-    // changeBackgroundColor(state,actions){
-    //   state.backgroundColor = actions.payload
-    // }
     // increment(state) {
     //   state.value++ 
     // // or  state.value = state.value+1    

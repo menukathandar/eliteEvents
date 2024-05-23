@@ -76,7 +76,7 @@ const SignInForm = () => {
               {formik.errors.Password}
             </div>
               <Button type="submit" radius="full" className="bg-gradient-to-tr from-green-500 to-blue-500 text-white shadow-lg">
-                Sign In
+                Login
               </Button>
               <div>
                 Don't have an account? <Link href="/register"><Button radius="full" className="bg-gradient-to-tr from-green-500 to-blue-500 text-white shadow-lg">Sign Up </Button></Link>

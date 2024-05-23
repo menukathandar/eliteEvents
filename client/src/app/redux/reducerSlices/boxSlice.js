@@ -15,7 +15,7 @@ const boxSlice = createSlice({
       state.height = state.height+5
     },
     changeWidth(state){
-
+      state.width = state.width+5
     },
     changeShape(state){
       // state.borderRadius = '50%'
@@ -37,5 +37,5 @@ const boxSlice = createSlice({
   },
 })
 
-export const { changeHeight} = boxSlice.actions
+export const { changeHeight, changeWidth } = boxSlice.actions
 export default boxSlice.reducer

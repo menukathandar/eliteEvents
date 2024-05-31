@@ -1,37 +1,35 @@
-// const express = require('express')
-// const app = express()
-// const port = 5000
+const express = require('express')
+const dbConnect = require('./src/db/connection')
+dbConnect()
+const app = express()
+require('dotenv').config()
+const mongoose = require ('mongoose');
+const { Schema } = mongoose;
 
-// app.get('/me', (req, res) => {
-//   res.send({
-//     name:"kaylin",
-//     balance: 100000,
-//     rewardPoint: 100
-//   })
-// })
-
-// app.listen(port, () => {
-//   console.log(`Example app listening on port ${port}`)
-// })
-
-// const express = require('express')
-// const app = express()
-// const port = 4000
-
-// app.get('/products', (req, res) => {
-//   res.send(['hawkins','baltra','panasonic'])
-// })
-
-// app.listen(port, () => {
-//   console.log(`Example app listening on port ${port}`)
-// })
-
-
-// server.mjs
-const{ createServer } = require('node:http');
-const server = createServer((req, res) => {
-  res.end('Hello World!\n');
+const userSchema = new Schema({
+  name: String, 
+  address: String,
 });
-server.listen(4000, '127.0.0.1', () => {
-  console.log('Listening on 127.0.0.1:3000');
-});
+const User = mongoose.model('User', userSchema);
+const port = process.env.PORT
+const userList= [
+  {id:1, name:'kaylin',addr: 'ktm'},
+  {id:2, name:'ram',addr: 'ktm'},
+  {id:4, name:'gopal',addr: 'pkr'},
+  {id:5, name:'jeken',addr: 'bhk'},
+]
+app.get('/users', (req, res) => {
+  
+const particularUser = userList.find((item)=>{
+    if(item.name.includes(req.query.search)) {
+        return item
+    }
+})
+
+res.send(particularUser)
+})
+
+app.listen(port, () => {
+  console.log(`Example app listening on port ${port}`)
+})
+

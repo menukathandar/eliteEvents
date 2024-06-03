@@ -3,32 +3,36 @@ const dbConnect = require('./src/db/connection')
 dbConnect()
 const app = express()
 require('dotenv').config()
+//body parser
+app.use(express.json())
 const mongoose = require ('mongoose');
 const { Schema } = mongoose;
 
 const userSchema = new Schema({
-  name: String, 
+  fullName: String, //validation of database level
   address: String,
+  dob: Date,
+  email: String,
+  username: String,
+  password: String,
+  role: {
+    type: String,
+    enum : ['admin','user'],
+    default: 'user'
+  }, 
 });
 const User = mongoose.model('User', userSchema);
 const port = process.env.PORT
-const userList= [
-  {id:1, name:'kaylin',addr: 'ktm'},
-  {id:2, name:'ram',addr: 'ktm'},
-  {id:4, name:'gopal',addr: 'pkr'},
-  {id:5, name:'jeken',addr: 'bhk'},
-]
-app.get('/users', (req, res) => {
+app.post('/register', (req, res) => {
+  console.log(req.body)
+  User.create(req.body)
   
-const particularUser = userList.find((item)=>{
-    if(item.name.includes(req.query.search)) {
-        return item
-    }
+  res.send('ok')
 })
-
-res.send(particularUser)
+app.get('/users', async(req, res) => {
+  const data = await User.find()
+  res.send(data)
 })
-
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
 })

@@ -1,4 +1,6 @@
 const express = require('express')
+const bcrypt = require('bcrypt');
+const saltRounds = 10; //more round more safe
 const dbConnect = require('./src/db/connection')
 dbConnect()
 const app = express()
@@ -23,11 +25,18 @@ const userSchema = new Schema({
 });
 const User = mongoose.model('User', userSchema);
 const port = process.env.PORT
-app.post('/register', (req, res) => {
-  console.log(req.body)
-  User.create(req.body)
-  
-  res.send('ok')
+app.post('/register', async(req, res) => {
+  const hashPassword =await bcrypt.hash(req.body.password,saltRounds)
+  req.body.password = hashPassword
+  const userExist = await User.exists({email: req.body.email})
+  if(userExist){
+    return res.json({msg: "Email already exists. Try another one!"})
+  }
+  await User.create(req.body)
+  return res.json({msg: "User Registered!"})
+  // console.log(req.body)
+  // await User.create(req.body)
+  // res.send('user registered')
 })
 app.get('/users', async(req, res) => {
   const data = await User.find()

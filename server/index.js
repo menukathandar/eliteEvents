@@ -28,16 +28,32 @@ const port = process.env.PORT
 app.post('/register', async(req, res) => {
   const hashPassword =await bcrypt.hash(req.body.password,saltRounds)
   req.body.password = hashPassword
-  const userExist = await User.exists({email: req.body.email})
-  if(userExist){
+  const emailExist = await User.exists({email: req.body.email})
+  const usernameExist = await User.exists({username: req.body.username})
+  if(emailExist){
     return res.json({msg: "Email already exists. Try another one!"})
+  }else if(usernameExist){
+    return res.json({msg: "Username already exists. Try another one!"})
   }
   await User.create(req.body)
   return res.json({msg: "User Registered!"})
-  // console.log(req.body)
-  // await User.create(req.body)
-  // res.send('user registered')
 })
+app.post('/login',async(req,res)=>{
+  const user = await User.findOne({username: req.body.username})
+   if(user){
+    console.log(user)
+     const isMatched = await bcrypt.compare(req.body.password,user.password)
+     if(isMatched){
+      res.json({msg: "Authorized!"})
+     }else{
+       res.json({msg: "Password not matched!"})
+    }
+   }else{
+     res.json({msg: "User not Registered!"})
+   }
+  //  await User.create(req.body)
+  //  return res.json({msg: "Login Successful!"})
+ })
 app.get('/users', async(req, res) => {
   const data = await User.find()
   res.send(data)

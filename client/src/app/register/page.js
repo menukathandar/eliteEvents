@@ -45,9 +45,13 @@ const SignupForm = () => {
     },
     validationSchema:SignupSchema,
     onSubmit: values => {
-      alert(JSON.stringify(values, null, 2));
+      console.log(values)
+      registerUser(values)
     },
   });
+  const registerUser =(values)=>{
+     fetch('http://localhost:4000/register')
+     }
 
   return (
     <form onSubmit={formik.handleSubmit}>

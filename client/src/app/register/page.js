@@ -14,8 +14,6 @@ const SignupSchema = Yup.object().shape({
     .min(5, 'Too Short!')
     .max(50, 'Too Long!')
     .required('Required'),
-  DateOfBirth: Yup.string()
-    .required('Required'), 
   Email: Yup.string().email('Invalid email').required('Required'),
   Username: Yup.string()
     .min(2, 'Too Short!')
@@ -38,19 +36,24 @@ const SignupForm = () => {
     initialValues: {
      Fullname: '',
      Address: '',
-     DateOfBirth: '',
      Email: '',
      Username:'',
      Password:''
     },
     validationSchema:SignupSchema,
     onSubmit: values => {
-      console.log(values)
+      console.log('Form values:',values)
       registerUser(values)
     },
   });
-  const registerUser =(values)=>{
-     fetch('http://localhost:4000/register')
+  const registerUser =async(values)=>{
+    const requestOptions = {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(values)
+  };
+  const response = await fetch('http://localhost:4000/register', requestOptions);
+
      }
 
   return (
@@ -93,7 +96,7 @@ const SignupForm = () => {
               />
               {formik.errors.Address}
             </div>
-            <div className="mb-2">
+            {/* <div className="mb-2">
             <label htmlFor="DateOfBirth"></label>
               <Input
                 isClearable
@@ -111,7 +114,7 @@ const SignupForm = () => {
                 }}
               />
               {formik.errors.DateOfBirth}
-            </div>
+            </div> */}
             <div className="mb-2">
             <label htmlFor="Email"></label>
               <Input

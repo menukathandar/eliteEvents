@@ -3,10 +3,13 @@ const bcrypt = require('bcrypt');
 const saltRounds = 10; //more round more safe
 const dbConnect = require('./src/db/connection')
 dbConnect()
+const cors = require('cors');
 const app = express()
 require('dotenv').config()
+const jwt = require('jsonwebtoken')
 //body parser
 app.use(express.json())
+app.use(cors())
 const mongoose = require ('mongoose');
 const { Schema } = mongoose;
 
@@ -44,7 +47,8 @@ app.post('/login',async(req,res)=>{
     console.log(user)
      const isMatched = await bcrypt.compare(req.body.password,user.password)
      if(isMatched){
-      res.json({msg: "Authorized!"})
+      const token = jwt.sign({ username: req.body.username }, process.env.SECRET_KEY);
+      res.json({msg: "Authorized!",token})
      }else{
        res.json({msg: "Password not matched!"})
     }

@@ -2,24 +2,25 @@
 
 import React, { useEffect,useRef } from 'react';
 import { useFormik } from 'formik';
-import {Button,Input} from "@nextui-org/react";
+import {Button,Input, Radio, RadioGroup} from "@nextui-org/react";
 import * as Yup from 'yup';
+
  
 const SignupSchema = Yup.object().shape({
-  Fullname: Yup.string()
+  fullname: Yup.string()
     .min(5, 'Too Short!')
     .max(25, 'Too Long!')
     .required('Required'),
-  Address: Yup.string()
+  address: Yup.string()
     .min(5, 'Too Short!')
     .max(50, 'Too Long!')
     .required('Required'),
-  Email: Yup.string().email('Invalid email').required('Required'),
-  Username: Yup.string()
+  email: Yup.string().email('Invalid email').required('Required'),
+  username: Yup.string()
     .min(2, 'Too Short!')
     .max(50, 'Too Long!')
     .required('Required'), 
-  Password: Yup.string()
+  password: Yup.string()
     .min(2, 'Too Short!')
     .max(50, 'Too Long!')
     .required('Required'), 
@@ -34,11 +35,12 @@ const SignupForm = () => {
   },[])
   const formik = useFormik({
     initialValues: {
-     Fullname: '',
-     Address: '',
-     Email: '',
-     Username:'',
-     Password:''
+     fullname: '',
+     address: '',
+     email: '',
+     username:'',
+     password:'',
+     role:''
     },
     validationSchema:SignupSchema,
     onSubmit: values => {
@@ -52,6 +54,7 @@ const SignupForm = () => {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(values)
   };
+  
   const response = await fetch('http://localhost:4000/register', requestOptions);
 
      }
@@ -62,114 +65,106 @@ const SignupForm = () => {
           <div className="flex justify-center">
            <div className= 'border border-black m-7 w-72 p-2'>
            <div className="mb-2">
-            <label htmlFor="Fullname"></label>
+            <label htmlFor="fullname"></label>
               <Input
                 ref={inputRef}
                 isClearable
-                label="Fullname"
+                label="fullname"
                 variant="bordered"
                 onChange={formik.handleChange}
-                name="Fullname"
+                name="fullname"
                 value={formik.values.Fullname}
                 placeholder="Enter your Fullname"
                 className="max-w-xs"
                 onClear = {()=>{
-                  formik.setFieldValue("Fullname",'')
+                  formik.setFieldValue("fullname",'')
                 }}
               />
-              {formik.errors.Fullname}
+              {formik.errors.fullname}
             </div>
             <div className="mb-2">
-            <label htmlFor="Address"></label>
+            <label htmlFor="address"></label>
               <Input
                 isClearable
-                label="Address"
+                label="address"
                 variant="bordered"
                 onChange={formik.handleChange}
-                name="Address"
+                name="address"
                 value={formik.values.Address}
                 placeholder="Enter your Address"
                 className="max-w-xs"
                 onClear = {()=>{
-                  formik.setFieldValue("Address",'')
+                  formik.setFieldValue("address",'')
                 }}
               />
-              {formik.errors.Address}
+              {formik.errors.address}
             </div>
-            {/* <div className="mb-2">
-            <label htmlFor="DateOfBirth"></label>
-              <Input
-                isClearable
-                type="date"
-                label="DateOfBirth"
-                variant="bordered"
-                onChange={formik.handleChange}
-                name="DateOfBirth"
-                value={formik.values.DateOfBirth}
-                placeholder="Enter your DateOfBirth"
-                defaultValue="junior@nextui.org"
-                className="max-w-xs"
-                onClear = {()=>{
-                  formik.setFieldValue("DateOfBirth",'')
-                }}
-              />
-              {formik.errors.DateOfBirth}
-            </div> */}
             <div className="mb-2">
-            <label htmlFor="Email"></label>
+            <label htmlFor="email"></label>
               <Input
                 isClearable
-                type="Email"
-                label="Email"
+                type="email"
+                label="email"
                 variant="bordered"
                 onChange={formik.handleChange}
-                name="Email"
-                value={formik.values.Email}
+                name="email"
+                value={formik.values.email}
                 placeholder="Enter your Email"
-                defaultValue="junior@nextui.org"
                 onClear = {()=>{
-                  formik.setFieldValue("Email",'')
+                  formik.setFieldValue("email",'')
                 }}
                 className="max-w-xs"
               />
-              {formik.errors.Email}
+              {formik.errors.email}
             </div>
             <div className="mb-2">
-            <label htmlFor="Username"></label>
+            <label htmlFor="username"></label>
               <Input
                 isClearable
-                label="Username"
+                label="username"
                 variant="bordered"
                 onChange={formik.handleChange}
-                name="Username"
-                value={formik.values.Username}
+                name="username"
+                value={formik.values.username}
                 placeholder="Enter your Username"
-                defaultValue="junior@nextui.org"
                 onClear = {()=>{
-                  formik.setFieldValue("Username",'')
+                  formik.setFieldValue("username",'')
                 }}
                 className="max-w-xs"
 
               />
-              {formik.errors.Username}
+              {formik.errors.username}
             </div>
             <div className="mb-2">
-            <label htmlFor="Password"></label>
+            <label htmlFor="password"></label>
               <Input
                 isClearable
-                type="Password"
-                label="Password"
+                type="password"
+                label="password"
                 variant="bordered"
                 onChange={formik.handleChange}
-                name="Password"
-                value={formik.values.Password}
+                name="password"
+                value={formik.values.password}
                 placeholder="Enter your Password"
                 onClear = {()=>{
-                  formik.setFieldValue("Password",'')
+                  formik.setFieldValue("password",'')
                 }}
                 className="max-w-xs"
               />
-              {formik.errors.Password}
+              {formik.errors.password}
+            </div>
+            <div className="mb-2">
+            <label htmlFor="role"></label>
+            <RadioGroup
+              label="Select role"
+              name="role"
+              onChange={formik.handleChange}
+              value={formik.values.role}
+            >
+      <Radio value="user">User</Radio>
+      <Radio value="admin">Admin</Radio>
+    </RadioGroup>
+
             </div>
               <Button type="submit" radius="full" className="bg-gradient-to-tr from-green-500 to-blue-500 text-white shadow-lg">
                 Sign Up

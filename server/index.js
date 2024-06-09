@@ -16,7 +16,6 @@ const { Schema } = mongoose;
 const userSchema = new Schema({
   fullName: String, //validation of database level
   address: String,
-  dob: Date,
   email: String,
   username: String,
   password: String,
@@ -27,8 +26,10 @@ const userSchema = new Schema({
   }, 
 });
 const User = mongoose.model('User', userSchema);
-const port = process.env.PORT
+const port = process.env.PORT 
 app.post('/register', async(req, res) => {
+  console.log(req.body)
+
   const hashPassword =await bcrypt.hash(req.body.password,saltRounds)
   req.body.password = hashPassword
   const emailExist = await User.exists({email: req.body.email})

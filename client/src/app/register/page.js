@@ -4,9 +4,10 @@ import React, { useEffect,useRef } from 'react';
 import { useFormik } from 'formik';
 import {Button,Input, Radio, RadioGroup} from "@nextui-org/react";
 import * as Yup from 'yup';
-
+import toast from 'react-hot-toast';
  
 const SignupSchema = Yup.object().shape({
+
   fullname: Yup.string()
     .min(5, 'Too Short!')
     .max(25, 'Too Long!')
@@ -56,8 +57,14 @@ const SignupForm = () => {
   };
   
   const response = await fetch('http://localhost:4000/register', requestOptions);
-
-     }
+    const data = await response.json()
+    if(response.status == '200'){
+      toast.success(data.msg)
+    
+    }else{
+      toast.error(data.msg)
+    }
+  }
 
   return (
     <form onSubmit={formik.handleSubmit}>

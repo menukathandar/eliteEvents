@@ -1,20 +1,20 @@
-'use client'
+// 'use client'
+// import NavBar from "@/components/navbar/page";
+// import Image from 'next/image'
+// const dashboard= () => {
+//   return (
+// <div>
+// <Image
+//       src="/outdoor.jpg"
+//       width={500}
+//       height={500}
+//       alt="Outdoor Picture"
+//     />
+//     <NavBar/>
+//  </div>
+//   );
+// }
 
-import NavBar from "@/components/navbar/page";
+// export default dashboard
 
-
-
-// import React from 'react'
-// import {Navbar, NavbarBrand, NavbarContent, NavbarItem, Link, Button} from "@nextui-org/react"
-// import NavBar from '@/components/navbar/page'
-
-const dashboard= () => {
-  return (
-<div>
-    <NavBar/>
- </div>
-  );
-}
-
-export default dashboard
 

@@ -7,15 +7,19 @@ import Link from 'next/link'
 import { useFormik } from 'formik';
 import {Button,Input} from "@nextui-org/react";
 import * as Yup from 'yup';
+import { useDispatch } from 'react-redux';
+import toast from 'react-hot-toast'
+import { useRouter } from 'next/navigation';
  
 const SignInSchema = Yup.object().shape({
-  Username: Yup.string()
+  username: Yup.string()
     .required('Required'), 
-  Password: Yup.string()
+  password: Yup.string()
     .required('Required'), 
   
 });
 const SignInForm = () => {
+  const router = useRouter()
   const inputRef = useRef(null)
   useEffect (() =>{
     if(inputRef.current){
@@ -24,18 +28,40 @@ const SignInForm = () => {
   },[])
   const formik = useFormik({
     initialValues: {
-     Username:'',
-     Password:''
+     username:'',
+     password:''
     },
     validationSchema:SignInSchema,
     onSubmit: values => {
-      console.log(values)
+      loginUser(values)
       // registerUser(values)
     },
   });
   // const registerUser =(values)=>{
   //   fetch('http://localhost:4000/register')
   // }
+  const loginUser =async(values)=>{
+    const requestOptions = {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(values)
+  };
+  
+  const response = await fetch('http://localhost:4000/login', requestOptions);
+    const data = await response.json()
+    if(response.status == '200'){
+      toast.success(data.msg)
+      // useDispatch(setLoginDetails(data))
+    if(data.user.role == 'user'){
+      router.push('/dashboard')
+    }else{
+      router.push('/admin-dashboard')
+    }
+
+    }else{
+      toast.error(data.msg)
+    }
+  }
 
   return (
     <form onSubmit={formik.handleSubmit}>
@@ -43,41 +69,40 @@ const SignInForm = () => {
           <div className="flex justify-center ">
            <div className= 'border border-black m-7 w-72 p-2'>
             <div className="mb-2">
-            <label htmlFor="Username"></label>
+            <label htmlFor="username"></label>
               <Input
                 ref={inputRef}
                 isClearable
-                label="Username"
+                label="username"
                 variant="bordered"
                 onChange={formik.handleChange}
-                name="Username"
-                value={formik.values.Username}
+                name="username"
+                value={formik.values.username}
                 placeholder="Enter your Username"
-                defaultValue="junior@nextui.org"
                 onClear = {()=>{
-                  formik.setFieldValue("Username",'')
+                  formik.setFieldValue("username",'')
                 }}
                 className="max-w-xs"
               />
-              {formik.errors.Username}
+              {formik.errors.username}
             </div>
             <div className="mb-2">
-            <label htmlFor="Password"></label>
+            <label htmlFor="password"></label>
               <Input
                 isClearable
-                type="Password"
-                label="Password"
+                type="password"
+                label="password"
                 variant="bordered"
                 onChange={formik.handleChange}
-                name="Password"
-                value={formik.values.Password}
+                name="password"
+                value={formik.values.password}
                 placeholder="Enter your Password"
                 onClear = {()=>{
-                  formik.setFieldValue("Password",'')
+                  formik.setFieldValue("password",'')
                 }}
                 className="max-w-xs"
               />
-              {formik.errors.Password}
+              {formik.errors.password}
             </div>
               <Button type="submit" radius="full" className="bg-gradient-to-tr from-green-500 to-blue-500 text-white shadow-lg">
                 Login

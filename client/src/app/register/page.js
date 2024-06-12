@@ -80,7 +80,7 @@ const SignupForm = () => {
                 variant="bordered"
                 onChange={formik.handleChange}
                 name="fullname"
-                value={formik.values.Fullname}
+                value={formik.values.fullname}
                 placeholder="Enter your Fullname"
                 className="max-w-xs"
                 onClear = {()=>{

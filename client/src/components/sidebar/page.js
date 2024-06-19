@@ -1,12 +1,12 @@
 'use client'
 import React from "react";
-// import {Listbox, ListboxItem} from "@nextui-org/react";
-// import {cn} from "@nextui-org/react";
-// import { GenIcon } from "react-icons";
-// import { CgProfile } from "react-icons/cg";
-// import sideBarItems from '@/config/sideBarItems.json'
-// import { useRouter } from "next/navigation";
-// import { useSelector } from "react-redux";
+import {Listbox, ListboxItem} from "@nextui-org/react";
+import {cn} from "@nextui-org/react";
+import { GenIcon } from "react-icons";
+import { CgProfile } from "react-icons/cg";
+import sideBarItems from '@/config/sideBarItems.json'
+import { useRouter } from "next/navigation";
+import { useSelector } from "react-redux";
 
 
 export const ItemCounter = ({number}) => (

@@ -48,7 +48,7 @@ export default function App() {
   ];
 
   return (
-    <div className="gap-2 grid grid-cols-2 sm:grid-cols-4">
+    <div className="p-8 gap-2 grid grid-cols-2 sm:grid-cols-4">
       {list.map((item, index) => (
         <Card shadow="sm" key={index} isPressable onPress={() => console.log("item pressed")}>
           <CardBody className="overflow-visible p-0">

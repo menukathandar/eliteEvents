@@ -1,4 +1,5 @@
 'use client'
+import AutoPopup from "@/components/AutoPopup";
 import NavBar from "@/components/navbar/page";
 import Image from 'next/image'
 
@@ -29,7 +30,9 @@ const page = () => {
           className="rounded-lg shadow-lg"
         />
       </div>
+      <AutoPopup/>
     </div>
+  
   );
 }
 

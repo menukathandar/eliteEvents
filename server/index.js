@@ -35,9 +35,9 @@ app.post('/register', async(req, res) => {
   const emailExist = await User.exists({email: req.body.email})
   const usernameExist = await User.exists({username: req.body.username})
   if(emailExist){
-    return res.json({msg: "Email already exists. Try another one!"})
+    return res.status(409).json({msg: "Email already exists. Try another one!"})
   }else if(usernameExist){
-    return res.json({msg: "Username already exists. Try another one!"})
+    return res.status(409).json({msg: "Username already exists. Try another one!"})
   }
   await User.create(req.body)
   return res.json({msg: "User Registered!"})
@@ -49,12 +49,12 @@ app.post('/login',async(req,res)=>{
      const isMatched = await bcrypt.compare(req.body.password,user.password)
      if(isMatched){
       const token = jwt.sign({ username: req.body.username }, process.env.SECRET_KEY);
-      res.json({msg: "Authorized!",token})
+      res.json({msg: "Authorized!",token,user})
      }else{
-       res.json({msg: "Password not matched!"})
+       res.status(401).json({msg: "Password not matched!"})
     }
    }else{
-     res.json({msg: "User not Registered!"})
+     res.status(401).json({msg: "User not Registered!"})
    }
   //  await User.create(req.body)
   //  return res.json({msg: "Login Successful!"})

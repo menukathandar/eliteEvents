@@ -30,7 +30,7 @@ const page = () => {
           className="rounded-lg shadow-lg"
         />
       </div>
-      <AutoPopup/>
+      {/* <AutoPopup/> */}
     </div>
   
   );

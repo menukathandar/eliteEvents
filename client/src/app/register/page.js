@@ -1,13 +1,16 @@
 'use client'
 
-import React, { useEffect,useRef } from 'react';
+import React, { useEffect,useRef, useState } from 'react';
 import { useFormik } from 'formik';
 import {Button,Input, Radio, RadioGroup} from "@nextui-org/react";
 import * as Yup from 'yup';
 import toast from 'react-hot-toast';
- 
+import { Router } from 'next/router';
+import { useRouter } from 'next/navigation';
+// import { Navigate, Router, useNavigate } from 'react-router-dom';
+useRouter
 const SignupSchema = Yup.object().shape({
-
+  
   fullname: Yup.string()
     .min(5, 'Too Short!')
     .max(25, 'Too Long!')
@@ -28,6 +31,8 @@ const SignupSchema = Yup.object().shape({
   
 });
 const SignupForm = () => {
+  // const navigate = useNavigate();
+  const router = useRouter()
   const inputRef = useRef(null)
   useEffect (() =>{
     if(inputRef.current){
@@ -60,7 +65,8 @@ const SignupForm = () => {
     const data = await response.json()
     if(response.status == '200'){
       toast.success(data.msg)
-    
+      // Router.push('/login');
+      router.push('/login')
     }else{
       toast.error(data.msg)
     }
@@ -169,7 +175,6 @@ const SignupForm = () => {
               value={formik.values.role}
             >
       <Radio value="user">User</Radio>
-      <Radio value="admin">Admin</Radio>
     </RadioGroup>
 
             </div>

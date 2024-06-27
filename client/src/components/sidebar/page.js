@@ -61,3 +61,44 @@ const {userDetails
     </Listbox>
   );
 }
+
+
+
+// 'use client'
+// import React from "react";
+// import { Listbox, ListboxItem } from "@nextui-org/react";
+// import { cn } from "@nextui-org/react";
+// import { CgProfile, CgHome, CgHotel, CgRestaurant, CgCalendar } from "react-icons/cg";
+
+// // IconWrapper Component
+// const IconWrapper = ({ children, className }) => (
+//   <div className={cn(className, "flex items-center rounded-small justify-center w-7 h-7")}>
+//     {children}
+//   </div>
+// );
+
+// // Sidebar Component
+// export default function SideBar() {
+//   return (
+//     <Listbox
+//       aria-label="Static Sidebar"
+//       className="p-0 gap-0 divide-y divide-default-300/50 dark:divide-default-100/80 bg-[#034CAD] max-w-[600px] text-white overflow-visible shadow-small rounded-medium m-2"
+//       itemClasses={{
+//         base: "px-3 first:rounded-t-medium last:rounded-b-medium rounded-none gap-3 h-12 data-[hover=true]:bg-default-100/80",
+//       }}
+//     >
+//       <ListboxItem key="/dashboard" startContent={<IconWrapper><CgHome /></IconWrapper>}>
+//         Dashboard
+//       </ListboxItem>
+//       <ListboxItem key="/rooms" startContent={<IconWrapper><CgHotel /></IconWrapper>}>
+//         Rooms
+//       </ListboxItem>
+//       <ListboxItem key="/dining" startContent={<IconWrapper><CgRestaurant /></IconWrapper>}>
+//         Dining
+//       </ListboxItem>
+//       <ListboxItem key="/events" startContent={<IconWrapper><CgCalendar /></IconWrapper>}>
+//         Events
+//       </ListboxItem>
+//     </Listbox>
+//   );
+// }

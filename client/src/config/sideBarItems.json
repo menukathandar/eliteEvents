@@ -1,0 +1,15 @@
+{
+    "admin": [
+        {"id":1, "name": "Dashboard", "link": "/admin-dashboard"},
+        {"id":1, "name": "Rooms", "link": "/rooms"},
+        {"id":1, "name": "Dining", "link": "/dining"},
+        {"id":1, "name": "Events", "link": "/events"}
+    ],
+    "user": [
+        {"id":1, "name": "Dashboard", "link": "/dashboard"},
+        {"id":1, "name": "Rooms", "link": "/rooms"},
+        {"id":1, "name": "Dining", "link": "/dining"},
+        {"id":1, "name": "Events", "link": "/events"}
+    
+    ]
+}

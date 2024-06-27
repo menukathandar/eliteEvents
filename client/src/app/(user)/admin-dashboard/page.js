@@ -2,8 +2,9 @@
 import React from "react";
 import {Button, Card, CardBody, CardFooter, Image} from "@nextui-org/react";
 import Link from "next/link";
+import SideBar from "@/components/sidebar/page";
 
-export default function App() {
+const AdminDashboard = () => {
   const list = [
     {
       title: "Orange",
@@ -68,6 +69,7 @@ export default function App() {
         </Card>
       ))}
       <div>
+        {/* <SideBar/> */}
       <Button type="submit" radius="full" className="bg-gradient-to-tr from-green-500 to-blue-500 text-white shadow-lg">
       <Link href="/add-event">Add new Event</Link>
       </Button>
@@ -76,3 +78,5 @@ export default function App() {
     
   );
 }
+export default AdminDashboard
+

@@ -7,8 +7,7 @@ import * as Yup from 'yup';
 import toast from 'react-hot-toast';
 import { Router } from 'next/router';
 import { useRouter } from 'next/navigation';
-// import { Navigate, Router, useNavigate } from 'react-router-dom';
-useRouter
+
 const SignupSchema = Yup.object().shape({
   
   fullname: Yup.string()
@@ -31,7 +30,6 @@ const SignupSchema = Yup.object().shape({
   
 });
 const SignupForm = () => {
-  // const navigate = useNavigate();
   const router = useRouter()
   const inputRef = useRef(null)
   useEffect (() =>{
@@ -65,7 +63,6 @@ const SignupForm = () => {
     const data = await response.json()
     if(response.status == '200'){
       toast.success(data.msg)
-      // Router.push('/login');
       router.push('/login')
     }else{
       toast.error(data.msg)

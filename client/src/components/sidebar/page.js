@@ -3,11 +3,11 @@ import React from "react";
 import {Listbox, ListboxItem} from "@nextui-org/react";
 import {cn} from "@nextui-org/react";
 import { GenIcon } from "react-icons";
-import sideBarItems from '../config/sideBarItems.json'
+// import sideBarItems from '../config/sideBarItems.json'
 import { useRouter } from "next/navigation";
 import { useSelector } from "react-redux";
 import { CgProfile, CgHome, CgHotel, CgRestaurant, CgCalendar } from "react-icons/cg";
-
+import sideBarItems from '@/config/sideBarItems.json'
 
 
 export const ItemCounter = ({number}) => (
@@ -27,29 +27,25 @@ export const IconWrapper = ({children, className}) => (
 export default function SideBar() {
 const {userDetails
 }=  useSelector(state=>state.user)
-  // console.log(sideBarItems)
+  console.log(sideBarItems)
   const router = useRouter()
   return (
     <Listbox
       aria-label="User Menu"
-      // onAction={(key) => router.push(key)}
+      onAction={(key) => router.push(key)}
     
-      // className={`p-0 gap-0 divide-y divide-default-300/50 dark:divide-default-100/80 ${userDetails.role=='admin' ?'bg-[#034CAD]': 'bg-green-500' }  max-w-[600px]  text-white overflow-visible shadow-small rounded-medium m-2`}
-      // itemClasses={{
-      //   base: "px-3 first:rounded-t-medium last:rounded-b-medium rounded-none gap-3 h-12 data-[hover=true]:bg-default-100/80",
-      // }}
+      className={`p-0 gap-0 divide-y divide-default-300/50 dark:divide-default-100/80 ${userDetails.role=='admin' ?'bg-[#034CAD]': 'bg-green-500' }  max-w-[600px]  text-white overflow-visible shadow-small rounded-medium m-2`}
+      itemClasses={{
+        base: "px-3 first:rounded-t-medium last:rounded-b-medium rounded-none gap-3 h-12 data-[hover=true]:bg-default-100/80",
+      }}
     >
-       <ListboxItem key="/dashboard" startContent={<IconWrapper><CgHome /></IconWrapper>}>
-        Dashboard
-      </ListboxItem>
-    <ListboxItem key="/rooms" startContent={<IconWrapper><CgHotel /></IconWrapper>}>
-     Rooms
-    </ListboxItem>
-      {/* {
-     sideBarItems[userDetails?.role] && sideBarItems[userDetails?.role].map((item)=>{
+      {
+    //  sideBarItems[userDetails?.role] && sideBarItems[userDetails?.role].map((item)=>{
+        sideBarItems['user'].map((item)=>{ //sideBarItems json bata aauxa
         return (
           <ListboxItem
-          key={item.link}
+        //   key="issues"
+        key = {item.link}
         
           startContent={
             <IconWrapper className="bg-success/10 text-success bg-white" >
@@ -61,7 +57,7 @@ const {userDetails
         </ListboxItem>
         )
       })
-      } */}
+      }
    
      
     </Listbox>
@@ -70,41 +66,41 @@ const {userDetails
 
 
 
-// 'use client'
-// import React from "react";
-// import { Listbox, ListboxItem } from "@nextui-org/react";
-// import { cn } from "@nextui-org/react";
-// import { CgProfile, CgHome, CgHotel, CgRestaurant, CgCalendar } from "react-icons/cg";
+// // 'use client'
+// // import React from "react";
+// // import { Listbox, ListboxItem } from "@nextui-org/react";
+// // import { cn } from "@nextui-org/react";
+// // import { CgProfile, CgHome, CgHotel, CgRestaurant, CgCalendar } from "react-icons/cg";
 
-// // IconWrapper Component
-// const IconWrapper = ({ children, className }) => (
-//   <div className={cn(className, "flex items-center rounded-small justify-center w-7 h-7")}>
-//     {children}
-//   </div>
-// );
+// // // IconWrapper Component
+// // const IconWrapper = ({ children, className }) => (
+// //   <div className={cn(className, "flex items-center rounded-small justify-center w-7 h-7")}>
+// //     {children}
+// //   </div>
+// // );
 
-// // Sidebar Component
-// export default function SideBar() {
-//   return (
-//     <Listbox
-//       aria-label="Static Sidebar"
-//       className="p-0 gap-0 divide-y divide-default-300/50 dark:divide-default-100/80 bg-[#034CAD] max-w-[600px] text-white overflow-visible shadow-small rounded-medium m-2"
-//       itemClasses={{
-//         base: "px-3 first:rounded-t-medium last:rounded-b-medium rounded-none gap-3 h-12 data-[hover=true]:bg-default-100/80",
-//       }}
-//     >
-//       <ListboxItem key="/dashboard" startContent={<IconWrapper><CgHome /></IconWrapper>}>
-//         Dashboard
-//       </ListboxItem>
-//       <ListboxItem key="/rooms" startContent={<IconWrapper><CgHotel /></IconWrapper>}>
-//         Rooms
-//       </ListboxItem>
-//       <ListboxItem key="/dining" startContent={<IconWrapper><CgRestaurant /></IconWrapper>}>
-//         Dining
-//       </ListboxItem>
-//       <ListboxItem key="/events" startContent={<IconWrapper><CgCalendar /></IconWrapper>}>
-//         Events
-//       </ListboxItem>
-//     </Listbox>
-//   );
-// }
+// // // Sidebar Component
+// // export default function SideBar() {
+// //   return (
+// //     <Listbox
+// //       aria-label="Static Sidebar"
+// //       className="p-0 gap-0 divide-y divide-default-300/50 dark:divide-default-100/80 bg-[#034CAD] max-w-[600px] text-white overflow-visible shadow-small rounded-medium m-2"
+// //       itemClasses={{
+// //         base: "px-3 first:rounded-t-medium last:rounded-b-medium rounded-none gap-3 h-12 data-[hover=true]:bg-default-100/80",
+// //       }}
+// //     >
+// //       <ListboxItem key="/dashboard" startContent={<IconWrapper><CgHome /></IconWrapper>}>
+// //         Dashboard
+// //       </ListboxItem>
+// //       <ListboxItem key="/rooms" startContent={<IconWrapper><CgHotel /></IconWrapper>}>
+// //         Rooms
+// //       </ListboxItem>
+// //       <ListboxItem key="/dining" startContent={<IconWrapper><CgRestaurant /></IconWrapper>}>
+// //         Dining
+// //       </ListboxItem>
+// //       <ListboxItem key="/events" startContent={<IconWrapper><CgCalendar /></IconWrapper>}>
+// //         Events
+// //       </ListboxItem>
+// //     </Listbox>
+// //   );
+// // }

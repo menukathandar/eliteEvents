@@ -31,28 +31,8 @@ const AdminDashboard = () => {
   ];
 
   return (
-    <div className="p-8 gap-2 grid grid-cols-2 sm:grid-cols-4">
-      
-      {list.map((item, index) => (
-        <Card shadow="sm" key={index} isPressable onPress={() => console.log("item pressed")}>
-          <CardBody className="overflow-visible p-0">
-            <Image
-              shadow="sm"
-              radius="lg"
-              width="100%"
-              alt={item.title}
-              className="w-full object-cover h-[140px]"
-              src={item.img}
-            />
-          </CardBody>
-          <CardFooter className="text-small justify-between">
-            <b>{item.title}</b>
-            <p className="text-default-500">{item.price}</p>
-          </CardFooter>
-        </Card>
-      ))}
       <div>
-        {/* <SideBar/> */}
+        <h4>Welcome Admin</h4>
       <Button type="submit" 
       radius="full" 
       className="bg-gradient-to-tr from-green-500 to-blue-500 text-white shadow-lg"
@@ -61,7 +41,6 @@ const AdminDashboard = () => {
       Add new Event
       </Button>
       </div>
-    </div>
     
   );
 }

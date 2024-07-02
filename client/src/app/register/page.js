@@ -59,7 +59,7 @@ const SignupForm = () => {
       body: JSON.stringify(values)
   };
   
-  const response = await fetch('http://localhost:4000/register', requestOptions);
+  const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/register`, requestOptions);
     const data = await response.json()
     if(response.status == '200'){
       toast.success(data.msg)

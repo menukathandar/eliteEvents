@@ -38,7 +38,7 @@ const SignInForm = () => {
     },
   });
   // const registerUser =(values)=>{
-  //   fetch('http://localhost:4000/register')
+  //   fetch(`${process.env.NEXT_PUBLIC_API_URL}/register`)
   // }
   const loginUser =async(values)=>{
     const requestOptions = {
@@ -47,7 +47,7 @@ const SignInForm = () => {
       body: JSON.stringify(values)
   };
   
-  const response = await fetch('http://localhost:4000/login', requestOptions);
+  const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/login`, requestOptions);
     const data = await response.json()
     if(response.status == '200'){
       toast.success(data.msg)

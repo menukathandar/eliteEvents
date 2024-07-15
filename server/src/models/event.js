@@ -1,15 +1,14 @@
 const mongoose = require('mongoose')
 const { Schema } = mongoose;
 
-const productSchema = new Schema({
-  productName: String, // String is shorthand for {type: String}
-  productPrice: Number,
-  productCategory: String,
-  productDescription: String,
-  productImage: String
+const eventSchema = new Schema({
+  eventType: String, // String is shorthand for {type: String}
+  isBooked: Boolean,
+  eventPrice: String,
+  discount: String
 
 });
-const Product = mongoose.model('Product', productSchema);
-module.exports= Product
+const Event = mongoose.model('Event', eventSchema);
+module.exports= Event
 
 

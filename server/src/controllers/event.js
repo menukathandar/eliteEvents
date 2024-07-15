@@ -1,30 +1,11 @@
-const Product = require("../models/product")
+const Event = require("../models/event")
 
-  const addNewProduct = async (req,res)=>{
-   await Product.create(req.body)
+  const addNewEvent = async (req,res)=>{
+    console.log(req.body)
+   const event = await Event.create(req.body)
   return res.json({
-      msg: 'Product Added!'
+      msg: 'New Event Added!' , event
     })
   }
-
-
-  const getAllProducts = async (req,res)=>{
-   const productList =  await Product.find()
-   return res.json(productList)
-   }
-  
-
-   const getProductDetailsById = async (req,res)=>{
-    try{
-      const productList =  await Product.findById(req.params.id)
-       res.json(productList)
-    }catch(err){
-
-      return res.json({
-        msg: "unable to fetch"
-      })
-    }
- 
-    }
    
-  module.exports = { addNewProduct,getAllProducts,getProductDetailsById}
+  module.exports = { addNewEvent }

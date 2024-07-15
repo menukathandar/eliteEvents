@@ -2,7 +2,7 @@ const { Router } = require('express');
 const multer  = require('multer')
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, 'uploads/product/')
+    cb(null, 'uploads/event/')
   },
   filename: function (req, file, cb) {
     cb(null, Date.now()+file.originalname)
@@ -12,13 +12,11 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage })
 const router = Router(); 
 
-const { addNewProduct,getAllProducts,getProductDetailsById} = require('../controllers/product');
+const { addNewEvent } = require('../controllers/event');
+const Event = require('../models/event');
 
-router.post('/products',upload.single('productImage'), addNewProduct)
-router.get('/products', getAllProducts)
-
-router.get('/products/:id', getProductDetailsById)
-  module.exports = router
+router.post('/event',upload.single('eventPhoto'),  addNewEvent)
+module.exports = router
 
 
 

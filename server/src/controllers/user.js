@@ -7,7 +7,7 @@ const findAllUsers = async(req,res)=>{
     res.json(data)
   }
   const registerUser =  async(req,res)=>{
-    console.log(req.body)
+    // console.log(req.body)
     const hashPassword =await bcrypt.hash(req.body.password,saltRounds)
     req.body.password = hashPassword
     const emailExist = await User.exists({email: req.body.email})

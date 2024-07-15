@@ -1,7 +1,10 @@
 const express = require('express')
 const dbConnect = require('./src/db/connection')
-const useRoute = require('./src/routes/user')
+const userRoute = require('./src/routes/user')
+const roomRoute = require('./src/routes/room')
 const cors = require('cors');
+// const roomRoute = require('./src/models/room');
+
 
 dbConnect()
 const app = express()
@@ -9,11 +12,16 @@ app.use(cors())
 require('dotenv').config()
 //body parser
 app.use(express.json())
-app.use(useRoute)
+app.use(userRoute)
+app.use(roomRoute)
 
 const port = process.env.PORT 
 // app.post('/register', async(req, res) => {
 //   console.log(req.body)
+
+// app.get('/ping', (req, res) => {
+//   res.send('pong');
+// });
 
  
 // })

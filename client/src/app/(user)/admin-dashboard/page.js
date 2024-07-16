@@ -33,13 +33,13 @@ const AdminDashboard = () => {
   return (
       <div>
         <h4>Welcome Admin</h4>
-      <Button type="submit" 
+      {/* <Button type="submit" 
       radius="full" 
       className="bg-gradient-to-tr from-green-500 to-blue-500 text-white shadow-lg"
          onClick={()=>handleClick()}
          >
       Add new Event
-      </Button>
+      </Button> */}
       </div>
     
   );

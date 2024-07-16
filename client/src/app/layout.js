@@ -1,8 +1,9 @@
 import { Inter } from "next/font/google";
 import "./globals.css";
 import {NextUIProvider} from "@nextui-org/react";
-import ReduxProvider from "./redux/ReduxProvider";
+// import ReduxProvider from "./redux/ReduxProvider";
 import { Toaster } from "react-hot-toast";
+import ReduxProvider from "@/redux/ReduxProvider";
 
 
 

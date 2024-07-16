@@ -15,9 +15,10 @@ import { configureStore, Tuple, combineReducers } from '@reduxjs/toolkit'
 import logger from 'redux-logger'
 import storage from 'redux-persist/lib/storage';
 import { persistReducer, persistStore } from 'redux-persist';
+// import userSlice from '../reducerSlices/userSlice';
+// import productSlice from '../reducerSlices/productSlice';
+// import locationSlice from '../reducerSlices/locationSlice';
 import userSlice from '../reducerSlices/userSlice';
-import productSlice from '../reducerSlices/productSlice';
-import locationSlice from '../reducerSlices/locationSlice';
 const persistConfig = {
     key: 'root',
     storage,
